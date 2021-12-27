@@ -5,11 +5,13 @@ import React from 'react';
 import {View, Text, Button, Image} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons'
+import usePokemonPaginated from '../hooks/usePokemonPaginated';
 import { styles } from '../theme/appTheme';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
     const {top} = useSafeAreaInsets()
+    const {} = usePokemonPaginated()
 
   return (
     <View style={styles.globalMarginal}>
