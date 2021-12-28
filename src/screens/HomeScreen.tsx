@@ -4,7 +4,8 @@ import {View, Text, Button, Image, ActivityIndicator} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { FadeInImage } from '../components/FadeInImage';
+import {FadeInImage} from '../components/FadeInImage';
+import PokemonCard from '../components/PokemonCard';
 import usePokemonPaginated from '../hooks/usePokemonPaginated';
 import {styles} from '../theme/appTheme';
 
@@ -23,24 +24,22 @@ const HomeScreen = () => {
               onPress={() => navigation.navigate('PokemonScreen' as any)}
               title="Pokemon"
       /> */}
-      {/* <Text style={{
-          ...styles.titulo,
-          ...styles.globalMarginal,
-          top: top + 20
-      }}>
-          Pokedex
-      </Text> */}
-      <FlatList
+     
+      <FlatList        
         data={simplePokemonList}
-        showsVerticalScrollIndicator={false}
-        renderItem={({item}) => (
-          <View>
-            <FadeInImage
-            uri={item.picture} 
-            style={{width: 100, height: 100,}}
-            />
-          </View>
+        ListHeaderComponent={() => (
+            <Text style={{
+                ...styles.titulo,
+                ...styles.globalMarginal,
+                top: top + 20,
+                marginBottom: top + 20
+            }}>
+                Pokedex
+            </Text> 
         )}
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        renderItem={({item}) => (<PokemonCard pokemon={item} /> )}
         keyExtractor={pokemon => pokemon.id}
         onEndReachedThreshold={0.5}
         onEndReached={() => {
