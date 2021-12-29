@@ -24,41 +24,49 @@ const HomeScreen = () => {
               onPress={() => navigation.navigate('PokemonScreen' as any)}
               title="Pokemon"
       /> */}
-     
-      <FlatList        
-        data={simplePokemonList}
-        ListHeaderComponent={() => (
-            <Text style={{
+      <View
+        style={{
+          padding: 0,
+          alignItems: 'center',
+        }}>
+        <FlatList
+          data={simplePokemonList}
+          ListHeaderComponent={() => (
+            <Text
+              style={{
                 ...styles.titulo,
                 ...styles.globalMarginal,
                 top: top + 20,
-                marginBottom: top + 20
-            }}>
-                Pokedex
-            </Text> 
-        )}
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        renderItem={({item}) => (<PokemonCard pokemon={item} /> )}
-        keyExtractor={pokemon => pokemon.id}
-        onEndReachedThreshold={0.5}
-        onEndReached={() => {
-          setTimeout(() => {
+                marginBottom: top + 20,
+              }}>
+              Pokedex
+            </Text>
+          )}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          renderItem={({item}) => <PokemonCard pokemon={item} />}
+          keyExtractor={pokemon => pokemon.id}
+          onEndReachedThreshold={0.5}
+          onEndReached={() => {
             loadedPokemons();
-          }, 1000);
-        }}
-        ListFooterComponent={() => (
-          <ActivityIndicator
-            size={30}
-            color="red"
-            style={{
-              height: 100,
-              width: 100,
-              borderColor: 'blue',
-            }}
-          />
-        )}
-      />
+
+            // setTimeout(() => {
+            // }, 1000);
+          }}
+          ListFooterComponent={() => (
+            <ActivityIndicator
+              size={30}
+              color="red"
+              style={{
+                height: 100,
+                width: 100,
+                borderColor: 'blue',
+                alignItems: 'center',
+              }}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 };
