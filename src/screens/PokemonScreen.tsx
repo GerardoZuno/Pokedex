@@ -1,25 +1,36 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, ActivityIndicator} from 'react-native';
+import {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { pokemonApi } from '../api/pokemonApi';
-import { FadeInImage } from '../components/FadeInImage';
+import {pokemonApi} from '../api/pokemonApi';
+import {FadeInImage} from '../components/FadeInImage';
+import PokemonDetails from '../components/PokemonDetails';
 import usePokemon from '../hooks/usePokemon';
+import {Ability} from '../interfaces/pokemonInterfaces';
 import {RootStackParams} from '../navigator/StackNavigator';
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
 
 const PokemonScreen = ({navigation, route}: Props) => {
   const {simplePokemon, color} = route.params;
-  const {id} = simplePokemon
+  const {id} = simplePokemon;
   const {top} = useSafeAreaInsets();
-const {isLoading, pokemon } = usePokemon(id)
-console.log(pokemon)
+  const {isLoading, pokemon} = usePokemon(id);
+
   return (
-    <View style={{
-        flex: 1
-    }}>
+    <View
+      style={{
+        flex: 1,
+      }}>
       <View
         style={{
           ...styles.headerContainer,
@@ -40,27 +51,29 @@ console.log(pokemon)
             ...styles.pokemonName,
             top: top + 55,
           }}>
-                        {simplePokemon.name + '\n'}
-
-           # {simplePokemon.id}
+          {simplePokemon.name + '\n'}# {simplePokemon.id}
         </Text>
 
         <Image
           source={require('../assets/pokebola-blanca.png')}
           style={{
-              ...styles.pokeball
+            ...styles.pokeball,
           }}
         />
         <FadeInImage
           uri={simplePokemon.picture}
           style={{
-              ...styles.pokemonImage
+            ...styles.pokemonImage,
           }}
-         />
+        />
       </View>
-      <View style={styles.loading}>
-          <ActivityIndicator color={color} size={50}/>
-      </View>
+      {isLoading ?(
+        <View style={styles.loading}>
+          <ActivityIndicator color={color} size={50} />
+        </View>
+      ): (
+          <PokemonDetails pokemon={pokemon}/>
+      )}
     </View>
   );
 };
@@ -86,20 +99,20 @@ const styles = StyleSheet.create({
     left: 20,
   },
   pokeball: {
-      width: 250,
-      height: 250,
-      bottom: -20,
-      opacity: 0.7
+    width: 250,
+    height: 250,
+    bottom: -20,
+    opacity: 0.7,
   },
   pokemonImage: {
-      width: 250,
-      height: 250,
-      position: 'absolute',
-      bottom: -15
+    width: 250,
+    height: 250,
+    position: 'absolute',
+    bottom: -15,
   },
   loading: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1
-  }
+    flex: 1,
+  },
 });
