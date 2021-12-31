@@ -1,12 +1,20 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions, Platform } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import SearchInput from '../components/SearchInput'
 
 const SearchScreen = () => {
+
+   const {top} = useSafeAreaInsets()
     return (
-        <View>
-            <Text>
-                TextScreen
-            </Text>
+        <View style={{
+            flex: 1,
+             marginTop: (Platform.OS === 'ios') ? top : top + 10,
+             marginHorizontal: 20
+              }}>
+
+           <SearchInput />       
+
         </View>
     )
 }
