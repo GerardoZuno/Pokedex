@@ -29,8 +29,8 @@ const HomeScreen = () => {
           padding: 0,
           alignItems: 'center',
         }}>
-        <FlatList
-          data={simplePokemonList}
+
+           <FlatList  data={simplePokemonList}
           ListHeaderComponent={() => (
             <Text
               style={{

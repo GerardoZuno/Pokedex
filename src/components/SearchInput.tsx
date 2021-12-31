@@ -14,7 +14,7 @@ const SearchInput = () => {
           placeholder="Buscar pokemon"
           autoCapitalize="none"
           autoCorrect={false}
-          maxLength={25}
+          maxLength={28}
         />
 
         <Icon
@@ -31,7 +31,9 @@ const SearchInput = () => {
 export default SearchInput;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginBottom: 10
+  },
   textBackground: {
     backgroundColor: '#F3F1F3',
     color: 'black',
