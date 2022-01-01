@@ -12,7 +12,6 @@ const SearchScreen = () => {
    const {top} = useSafeAreaInsets()
    const {isFetching, simplePokemonList} = usePokemonSearch()
 
-console.log(simplePokemonList)
    if (isFetching) {
         return (
            <Loading />
