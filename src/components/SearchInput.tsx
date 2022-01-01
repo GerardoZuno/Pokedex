@@ -1,12 +1,20 @@
 import React from 'react';
+import { ViewStyle } from 'react-native';
+import { StyleProp } from 'react-native';
 import {View, StyleSheet, Text, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const SearchInput = () => {
+interface Props {
+     style?: StyleProp<ViewStyle>
+      
+}
+
+const SearchInput = ({style}: Props) => {
   return (
     <View
       style={{
         ...styles.container,
+        ...style as any
       }}>
       <View style={styles.textBackground}>
         <TextInput
@@ -32,9 +40,12 @@ export default SearchInput;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 10
   },
   textBackground: {
+    zIndex: 999,
+    left: 0,
+    right: 0,
+    marginTop: 30,
     backgroundColor: '#F3F1F3',
     color: 'black',
     borderRadius: 50,
