@@ -7,11 +7,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import useDebounce from '../hooks/useDebounce';
 
 interface Props {
-     style?: StyleProp<ViewStyle>
+     style?: StyleProp<ViewStyle>,
+     onDebounce: (value: string) => void
       
 }
 
-const SearchInput = ({style}: Props) => {
+const SearchInput = ({style, onDebounce}: Props) => {
 
   const [textValue, settextValue] = useState('')
 
@@ -19,9 +20,13 @@ const SearchInput = ({style}: Props) => {
 
 
    useEffect(() => {
-     console.log({debouncedValue})
-     
+       onDebounce(debouncedValue.debouncedValue)  
+       return () => {
+        
+      }    
    }, [debouncedValue])
+
+
   return (
     <View
       style={{
