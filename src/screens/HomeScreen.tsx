@@ -54,16 +54,28 @@ const HomeScreen = () => {
             // }, 1000);
           }}
           ListFooterComponent={() => (
+          <View  style={{
+            height: 200,
+            width: '100%',
+            borderColor: 'blue',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}>
+
             <ActivityIndicator
-              size={30}
+              size={60}
               color="red"
               style={{
                 height: 100,
                 width: 100,
                 borderColor: 'blue',
                 alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 999
               }}
             />
+        </View>  
+  
           )}
         />
       </View>

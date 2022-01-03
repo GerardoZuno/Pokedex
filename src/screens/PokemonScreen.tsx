@@ -16,7 +16,7 @@ import {FadeInImage} from '../components/FadeInImage';
 import PokemonDetails from '../components/PokemonDetails';
 import usePokemon from '../hooks/usePokemon';
 import {Ability} from '../interfaces/pokemonInterfaces';
-import {RootStackParams} from '../navigator/StackNavigator';
+import {RootStackParams} from '../navigator/Tab1';
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
 

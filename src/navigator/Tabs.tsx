@@ -1,11 +1,16 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import StackNavigator from './StackNavigator';
+import StackNavigator, { RootStackParams } from './Tab1';
 import SearchScreen from '../screens/SearchScreen';
 import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from '../screens/HomeScreen';
+import PokemonScreen from '../screens/PokemonScreen';
+import Tab2Screen from './Tab2';
 
 const Tab = createBottomTabNavigator();
+
 
 export const MyTabs = () => {
   return (
@@ -37,13 +42,13 @@ export const MyTabs = () => {
     >
 
       <Tab.Screen
-       name="HomeScreen"
+       name="Home"
        component={StackNavigator}
        options={{
            tabBarLabel: "Listado",
            tabBarIcon: (({color} ) => <Icon color={color} name="list-outline" size={25}/>)
        }}  />
-      <Tab.Screen name="Settings" component={SearchScreen} 
+      <Tab.Screen name="Settings" component={Tab2Screen} 
       options={{
         tabBarLabel: "Buscar",
         tabBarIcon: (({color} ) => <Icon color={color} name="search-outline" size={25}/>)
