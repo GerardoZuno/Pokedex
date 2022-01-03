@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect} from 'react';
 import {useState} from 'react';
-import {View, Text, Platform, FlatList, TouchableOpacity, Touchable} from 'react-native';
+import {View, Text, Platform, FlatList, TouchableOpacity, Touchable, Image} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Loading from '../components/Loading';
 import SearchInput from '../components/SearchInput';
@@ -38,6 +38,9 @@ const SearchScreen = () => {
       setPokemonFiltered(pokemonById ? [pokemonById] : []);
     }
 
+
+
+
     //return se dispara cuando el componente se desmonta
     return () => {
       isMounted.current = false
@@ -67,8 +70,31 @@ const SearchScreen = () => {
           right: 0,
         }}
       /> 
-
-        <FlatList
+         {
+               term && pokemonFiltered.length === 0 ?
+               (
+                <View
+                style={{
+                  paddingTop: 60,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Image
+                  source={require('../assets/pokemonError.png')}
+                  style={{
+                    opacity: 0.7,
+       
+                    width: 240,
+                    height: 210,
+                  }}
+                />
+                <Text style={{fontSize: 20, marginTop: 10, color: 'red', fontWeight: 'bold'}}>
+                  Pokemon no encontrado
+                </Text>
+              </View>
+               ) 
+                : (
+                  <FlatList
           data={pokemonFiltered}
           ListHeaderComponent={() => ( 
             <Text
@@ -86,6 +112,13 @@ const SearchScreen = () => {
 
           keyExtractor={pokemon => pokemon.id}
         />
+                )
+
+         }
+        
+
+       
+
       </View>
   );
 };
